@@ -1,0 +1,12 @@
+ SELECT a.name AS fullname,
+    a.email,
+    a.id AS customerid,
+    b.name AS item,
+    b.id AS productid,
+    c.quantity,
+    c.id_customer,
+    c.id_product,
+    b.price * c.quantity::double precision AS price
+   FROM customer a
+     JOIN transaction_table c ON a.id = c.id_customer
+     JOIN products b ON b.id = c.id_product;
